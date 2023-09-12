@@ -1,14 +1,10 @@
 export class Point {
     private x: Number;
     private y: Number;
-    private height: Number;
-    private length: Number;
 
-    constructor(x: Number, y: Number, height: Number, length: Number) {
+    constructor(x: Number, y: Number) {
         this.x = x;
         this.y = y;
-        this.height = height;
-        this.length = length;
     }
 
     getx(): Number {
@@ -25,21 +21,5 @@ export class Point {
 
     sety(valueOfY: Number): void {
         this.y = valueOfY;
-    }
-
-    setLength(valueOfLength: number): void {
-        this.length = valueOfLength;
-    }
-
-    setHeight(valueOfHeight: number): void {
-        this.height = valueOfHeight;
-    }
-
-    getLength(): Number {
-        return this.length;
-    }
-
-    getHeight(): Number {
-        return this.height;
     }
 }

@@ -32,11 +32,8 @@ window.onload = function() {
             let x = j * size;
             let y = i * size;
 
-            let point: Point = new Point(x, y, size, size);
-            let square: Square = new Square(point);
-
-            console.log('toto')
-            console.log(point)
+            let point: Point = new Point(x, y);
+            let square: Square = new Square(point, size);
 
             square.drawSquare(ctx);
         }
