@@ -1,4 +1,4 @@
-import {Point} from "./Point";
+import { Point } from "./Point";
 
 export class Square {
 
@@ -9,10 +9,10 @@ export class Square {
     }
 
     drawSquare(ctx: CanvasRenderingContext2D): void {
-        let x: Number = this.point.getx();
-        let y: Number = this.point.gety();
-        let height: Number = this.point.getHeight();
-        let length: Number = this.point.getHeight();
+        let x: number = this.point.getx().valueOf();
+        let y: number = this.point.gety().valueOf();
+        let height: number = this.point.getHeight().valueOf();
+        let length: number = this.point.getHeight().valueOf();
 
         ctx.fillRect(x, y, height, length);
     }

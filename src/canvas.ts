@@ -1,5 +1,5 @@
-import {Point} from "./classes/Point";
-import {Square} from "./classes/Square";
+import { Point } from "./classes/Point";
+import { Square } from "./classes/Square";
 
 
 window.onload = function() {
@@ -33,12 +33,11 @@ window.onload = function() {
             let y = i * size;
 
             let point: Point = new Point(x, y, size, size);
-            console.log(point);
             let square: Square = new Square(point);
 
-            console.log(square);
+            console.log('toto')
+            console.log(point)
 
-            ctx.fillRect(j * size,  i * size, size, size);
             square.drawSquare(ctx);
         }
     }
