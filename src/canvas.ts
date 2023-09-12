@@ -1,7 +1,7 @@
 window.onload = function() {
     const canvas = document.getElementById('canvas') as HTMLCanvasElement | null;
 
-    if (canvas === null) {
+    if (!canvas) {
         const h1 = document.createElement('h1');
         const textNode = document.createTextNode("Canvas is null");
         h1.appendChild(textNode);
