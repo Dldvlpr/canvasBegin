@@ -26,6 +26,12 @@ var Point = /** @class */ (function () {
     Point.prototype.setHeight = function (valueOfHeight) {
         this.height = valueOfHeight;
     };
+    Point.prototype.getLength = function () {
+        return this.length;
+    };
+    Point.prototype.getHeight = function () {
+        return this.height;
+    };
     return Point;
 }());
 exports.Point = Point;

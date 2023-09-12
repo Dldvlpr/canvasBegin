@@ -66,7 +66,7 @@ var express_1 = __importDefault(require("express"));
 var path = __importStar(require("path"));
 var PORT = 3000;
 var app = (0, express_1.default)();
-app.use(express_1.default.static(path.join(__dirname, 'public')));
+app.use(express_1.default.static(path.join(__dirname, '../public')));
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, 'public/index.html'));
 });

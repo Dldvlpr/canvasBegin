@@ -34,4 +34,12 @@ export class Point {
     setHeight(valueOfHeight: number): void {
         this.height = valueOfHeight;
     }
+
+    getLength(): Number {
+        return this.length;
+    }
+
+    getHeight(): Number {
+        return this.height;
+    }
 }
