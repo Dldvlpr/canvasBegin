@@ -1,5 +1,6 @@
 import { Point } from "./classes/Point";
 import { Square } from "./classes/Square";
+import {Console} from "inspector";
 
 
 window.onload = function() {
@@ -24,18 +25,26 @@ window.onload = function() {
     }
 
     const size = 50;
+    let idOfSquare = 0;
 
-    for(let i = 0; i < 10; i++) {
-        for(let j = 0; j < 10; j++) {
-            ctx.fillStyle = (i + j) % 2 === 0 ? "black" : "red";
+    for(let i = 0; i < 2; i++) {
+        for(let j = 0; j < 2; j++) {
 
-            let x = j * size;
-            let y = i * size;
+            let x = i * size;
+            let y = j * size;
+            let color: string = (i + j) % 2 === 0 ? "black" : "red";
+            idOfSquare++;
 
             let point: Point = new Point(x, y);
-            let square: Square = new Square(point, size);
+            let square: Square = new Square(point, size, color, idOfSquare, ctx);
 
-            square.drawSquare(ctx);
+            square.drawSquare();
+            console.log(square.getLowerRightCorner())
+            console.log(square.getLowerLeftCorner())
+            console.log(square.getUpperRightCorner())
+            console.log(square.getUpperLeftCorner())
         }
     }
+
+
 };
