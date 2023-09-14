@@ -57,4 +57,24 @@ describe('Square class', () => {
         const lowerRight = square.getLowerRightCorner();
         expect(lowerRight).toEqual(new Position(position.x + size, position.y + size));
     });
+
+    it('Should get the position of mousse in canvas on click', () => {
+        const canvas = mockContext.canvas;
+        const getPosition = canvas.positionOnClick();
+        expect(getPosition).toEqual(new Position(getPosition.x, getPosition.y));
+    })
+
+    it('Should be left', () => {
+        const square = new Square(position, size, color, idOfSquare, mockContext);
+        const actualPosition = new Position(25, 30)
+        const isLeft = square.isLeft();
+        expect(isLeft).toBeTruthy();
+    });
+
+    it('Should not be left', () => {
+        const square = new Square(position, size, color, idOfSquare, mockContext);
+        const actualPosition = new Position(70, 87)
+        const isLeft = square.isLeft();
+        expect(isLeft).toBeFalsy();
+    });
 });
