@@ -39,5 +39,6 @@ window.onload = function() {
 
             square.drawSquare();
         }
+
     }
 };
