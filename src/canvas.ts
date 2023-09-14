@@ -3,6 +3,9 @@ import { Square } from "./classes/Square";
 
 
 window.onload = function() {
+    let squares: Square[] = [];
+
+
     const canvas = document.getElementById('canvas') as HTMLCanvasElement | null;
 
     if (!canvas) {
@@ -23,6 +26,24 @@ window.onload = function() {
         return;
     }
 
+
+
+    function getMousePos(canvas: HTMLCanvasElement, evt: MouseEvent): Position {
+        const rect = canvas.getBoundingClientRect();
+        return new Position(evt.clientX - rect.left, evt.clientY - rect.top);
+    }
+
+    canvas.addEventListener("click", function (evt) {
+        let mousePos = getMousePos(canvas, evt);
+        console.log(mousePos);
+
+        for(let square of squares) {
+            if(square.isInside(mousePos)) {
+                console.log( square.getIdOfSquare());
+            }
+        }
+    }, false);
+
     const size: number = 50;
     let idOfSquare = 0;
 
@@ -37,17 +58,9 @@ window.onload = function() {
             let point: Position = new Position(x, y);
             let square: Square = new Square(point, size, color, idOfSquare, ctx);
 
+            squares.push(square);
+
             square.drawSquare();
         }
-    }
-
-        canvas.addEventListener("click", function (evt) {
-            let mousePos = getMousePos(canvas, evt);
-            console.log(mousePos);
-        }, false);
-
-    function getMousePos(canvas: HTMLCanvasElement, evt: MouseEvent): Position {
-        const rect = canvas.getBoundingClientRect();
-        return new Position(evt.clientX - rect.left, evt.clientY - rect.top);
     }
 };

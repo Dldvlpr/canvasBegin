@@ -49,5 +49,11 @@ export class Square {
         return new Position( this.position.x + this.size,  this.position.y + this.size)
     }
 
+    public isInside(mousePosition: Position): boolean {
+        let topLeft = this.getUpperLeftCorner();
+        let bottomRight = this.getLowerRightCorner();
 
+        return mousePosition.x >= topLeft.x && mousePosition.x <= bottomRight.x &&
+            mousePosition.y >= topLeft.y && mousePosition.y <= bottomRight.y;
+    }
 }
