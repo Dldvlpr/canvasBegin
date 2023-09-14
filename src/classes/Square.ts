@@ -48,4 +48,6 @@ export class Square {
     public getLowerRightCorner() {
         return new Position( this.position.x + this.size,  this.position.y + this.size)
     }
+
+
 }

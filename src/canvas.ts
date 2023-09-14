@@ -39,6 +39,15 @@ window.onload = function() {
 
             square.drawSquare();
         }
+    }
 
+        canvas.addEventListener("click", function (evt) {
+            let mousePos = getMousePos(canvas, evt);
+            console.log(mousePos);
+        }, false);
+
+    function getMousePos(canvas: HTMLCanvasElement, evt: MouseEvent): Position {
+        const rect = canvas.getBoundingClientRect();
+        return new Position(evt.clientX - rect.left, evt.clientY - rect.top);
     }
 };

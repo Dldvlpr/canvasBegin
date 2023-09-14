@@ -61,14 +61,14 @@ describe('Square class', () => {
     it('Should be left', () => {
         const square = new Square(position, size, color, idOfSquare, mockContext);
         const actualPosition = new Position(25, 30)
-        const isInside = square.isInside();
+        const isInside: boolean = square.isInside(actualPosition);
         expect(isInside).toBeTruthy();
     });
 
     it('Should not be left', () => {
         const square = new Square(position, size, color, idOfSquare, mockContext);
         const actualPosition = new Position(70, 87)
-        const isInside = square.IsInside();
+        const isInside: boolean = square.isInside(actualPosition);
         expect(isInside).toBeFalsy();
     });
 });
