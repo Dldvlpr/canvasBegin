@@ -1,4 +1,4 @@
-import { Point } from "./classes/Point";
+import { Position } from "./classes/Position";
 import { Square } from "./classes/Square";
 
 
@@ -34,17 +34,10 @@ window.onload = function() {
             let color: string = (i + j) % 2 === 0 ? "black" : "red";
             idOfSquare++;
 
-            let point: Point = new Point(x, y);
+            let point: Position = new Position(x, y);
             let square: Square = new Square(point, size, color, idOfSquare, ctx);
 
             square.drawSquare();
-            console.log(square.getLowerRightCorner())
-            console.log(square.getLowerLeftCorner())
-            console.log(square.getUpperRightCorner())
-            console.log(square.getUpperLeftCorner())
-            console.log(square.getPoint());
         }
     }
-
-
 };

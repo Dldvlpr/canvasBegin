@@ -1,5 +1,5 @@
 import {Square} from "../classes/Square";
-import {Point} from "../classes/Point";
+import {Position} from "../classes/Position";
 import {beforeEach, describe, it} from "node:test";
 
 describe('Square draw', () => {
@@ -12,8 +12,8 @@ describe('Square draw', () => {
         canvas.height = 300;
         ctx = canvas.getContext('2d');
         
-        const point = new Point(0, 0);
-        const square = new Square(point, 50, "red", 4, ctx)
+        const position = new Position(0, 0);
+        const square = new Square(position, 50, "red", 4, ctx)
 
     });
 

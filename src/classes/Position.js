@@ -1,4 +1,4 @@
-var Point = /** @class */ (function () {
+var Position = /** @class */ (function () {
     function Point(x, y, height, length) {
         this.x = x;
         this.y = y;

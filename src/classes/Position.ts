@@ -1,6 +1,4 @@
-import {Position} from "./interfaces/IPosition";
-
-export class Point implements Position {
+export class Position {
     public x: number;
     public y: number;
 
