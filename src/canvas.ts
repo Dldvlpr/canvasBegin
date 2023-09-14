@@ -1,6 +1,5 @@
 import { Point } from "./classes/Point";
 import { Square } from "./classes/Square";
-import {Console} from "inspector";
 
 
 window.onload = function() {
@@ -24,7 +23,7 @@ window.onload = function() {
         return;
     }
 
-    const size = 50;
+    const size: number = 50;
     let idOfSquare = 0;
 
     for(let i = 0; i < 2; i++) {
@@ -43,6 +42,7 @@ window.onload = function() {
             console.log(square.getLowerLeftCorner())
             console.log(square.getUpperRightCorner())
             console.log(square.getUpperLeftCorner())
+            console.log(square.getPoint());
         }
     }
 

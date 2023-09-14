@@ -1,12 +1,13 @@
-import express, {Express, Request, Response} from 'express';
+// import express, {Express, Request, Response} from 'express';
+import * as Express from 'express';
 import * as path from 'path';
 
 const PORT: Number = 3000;
-const app: Express = express();
+const app = Express();
 
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(Express.static(path.join(__dirname, '../public')));
 
-app.get('/', (req: Request, res: Response) => {
+app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 

@@ -1,6 +1,8 @@
-export class Point {
-    private x: number;
-    private y: number;
+import {Position} from "./interfaces/IPosition";
+
+export class Point implements Position {
+    public x: number;
+    public y: number;
 
     constructor(x: number, y: number) {
         this.x = x;
