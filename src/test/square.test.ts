@@ -58,14 +58,14 @@ describe('Square class', () => {
         expect(lowerRight).toEqual(new Position(position.x + size, position.y + size));
     });
 
-    it('Should be left', () => {
+    it('Should be inside', () => {
         const square = new Square(position, size, color, id, mockContext);
         const actualPosition = new Position(25, 30)
         const isInside: boolean = square.isInside(actualPosition);
         expect(isInside).toBeTruthy();
     });
 
-    it('Should not be left', () => {
+    it('Should not be inside', () => {
         const square = new Square(position, size, color, id, mockContext);
         const actualPosition = new Position(70, 87)
         const isInside: boolean = square.isInside(actualPosition);
