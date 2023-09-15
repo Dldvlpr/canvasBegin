@@ -3,14 +3,14 @@ export class Square {
     public position: Position;
     public size: number;
     public color: string;
-    public idOfSquare: number;
+    public id: number;
     public ctx: CanvasRenderingContext2D;
 
-    constructor(position: Position, size: number, color: string, idOfSquare:number, ctx: CanvasRenderingContext2D) {
+    constructor(position: Position, size: number, color: string, id:number, ctx: CanvasRenderingContext2D) {
         this.position = position;
         this.size = size;
         this.color = color;
-        this.idOfSquare = idOfSquare;
+        this.id = id;
         this.ctx = ctx;
     }
 
@@ -18,8 +18,8 @@ export class Square {
         return this.position;
     }
 
-    public getIdOfSquare(): number {
-        return this.idOfSquare;
+    public getId(): number {
+        return this.id;
     }
 
     public setRandomRgbColor(): void {
@@ -30,7 +30,7 @@ export class Square {
         this.color = 'rgb(' + r + ', ' + g + ', ' + b + ')';
     }
 
-    public drawSquare(): void {
+    public square(): void {
         let x: number = this.position.x.valueOf();
         let y: number = this.position.y.valueOf();
         let size: number = this.size;

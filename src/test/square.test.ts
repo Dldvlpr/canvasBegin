@@ -7,7 +7,7 @@ describe('Square class', () => {
     let position: Position;
     let size: number;
     let color: string;
-    let idOfSquare: number;
+    let id: number;
 
     beforeEach(() => {
         mockContext = {
@@ -18,55 +18,55 @@ describe('Square class', () => {
         position = new Position(0, 0);
         size = 50;
         color = "black";
-        idOfSquare = 1;
+        id = 1;
     });
 
     it('should create a Square instance correctly', () => {
-        const square = new Square(position, size, color, idOfSquare, mockContext);
+        const square = new Square(position, size, color, id, mockContext);
         expect(square.getPoint()).toEqual(position);
-        expect(square.getIdOfSquare()).toBe(idOfSquare);
+        expect(square.getId()).toBe(id);
     });
 
     it('should draw the square with correct values', () => {
-        const square = new Square(position, size, color, idOfSquare, mockContext);
+        const square = new Square(position, size, color, id, mockContext);
         square.drawSquare();
         expect(mockContext.fillStyle).toBe(color);
         expect(mockContext.fillRect).toHaveBeenCalledWith(position.x, position.y, size, size);
     });
 
     it('Should get the upper left corner correctly', () => {
-        const square = new Square(position, size, color, idOfSquare, mockContext);
+        const square = new Square(position, size, color, id, mockContext);
         const upperLeft = square.getUpperLeftCorner();
         expect(upperLeft).toEqual(position); // Car le point supérieur gauche est le même que la position initiale du carré
     });
 
     it('Should get the upper right corner correctly', () => {
-        const square = new Square(position, size, color, idOfSquare, mockContext);
+        const square = new Square(position, size, color, id, mockContext);
         const upperRight = square.getUpperRightCorner();
         expect(upperRight).toEqual(new Position(position.x + size, position.y));
     });
 
     it('Should get the lower left corner correctly', () => {
-        const square = new Square(position, size, color, idOfSquare, mockContext);
+        const square = new Square(position, size, color, id, mockContext);
         const lowerLeft = square.getLowerLeftCorner();
         expect(lowerLeft).toEqual(new Position(position.x, position.y + size));
     });
 
     it('Should get the lower right corner correctly', () => {
-        const square = new Square(position, size, color, idOfSquare, mockContext);
+        const square = new Square(position, size, color, id, mockContext);
         const lowerRight = square.getLowerRightCorner();
         expect(lowerRight).toEqual(new Position(position.x + size, position.y + size));
     });
 
     it('Should be left', () => {
-        const square = new Square(position, size, color, idOfSquare, mockContext);
+        const square = new Square(position, size, color, id, mockContext);
         const actualPosition = new Position(25, 30)
         const isInside: boolean = square.isInside(actualPosition);
         expect(isInside).toBeTruthy();
     });
 
     it('Should not be left', () => {
-        const square = new Square(position, size, color, idOfSquare, mockContext);
+        const square = new Square(position, size, color, id, mockContext);
         const actualPosition = new Position(70, 87)
         const isInside: boolean = square.isInside(actualPosition);
         expect(isInside).toBeFalsy();
