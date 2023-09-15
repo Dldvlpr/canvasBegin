@@ -1,8 +1,8 @@
-import { Position } from "./classes/Position";
-import { Square } from "./classes/Square";
+import {Position} from "./classes/Position";
+import {Square} from "./classes/Square";
 
 
-window.onload = function() {
+window.onload = function () {
     let squares: Square[] = [];
 
 
@@ -27,29 +27,16 @@ window.onload = function() {
     }
 
 
-
     function getMousePos(canvas: HTMLCanvasElement, evt: MouseEvent): Position {
         const rect = canvas.getBoundingClientRect();
         return new Position(evt.clientX - rect.left, evt.clientY - rect.top);
     }
 
-    canvas.addEventListener("click", function (evt) {
-        let mousePos = getMousePos(canvas, evt);
-        console.log(mousePos);
-
-        for(let square of squares) {
-            if(square.isInside(mousePos)) {
-                console.log( square.getIdOfSquare());
-            }
-        }
-    }, false);
-
     const size: number = 50;
     let idOfSquare = 0;
 
-    for(let i = 0; i < 2; i++) {
-        for(let j = 0; j < 2; j++) {
-
+    for (let i = 0; i < 2; i++) {
+        for (let j = 0; j < 2; j++) {
             let x = i * size;
             let y = j * size;
             let color: string = (i + j) % 2 === 0 ? "black" : "red";
@@ -59,8 +46,20 @@ window.onload = function() {
             let square: Square = new Square(point, size, color, idOfSquare, ctx);
 
             squares.push(square);
-
             square.drawSquare();
         }
     }
+
+    canvas.addEventListener("click", function (evt) {
+        let mousePos = getMousePos(canvas, evt);
+        console.log(mousePos);
+
+        for (let square of squares) {
+            if (square.isInside(mousePos)) {
+                square.setRandomRgbColor();
+                square.drawSquare();
+            }
+        }
+    }, false);
 };
+

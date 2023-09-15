@@ -22,6 +22,13 @@ export class Square {
         return this.idOfSquare;
     }
 
+    public setRandomRgbColor(): void {
+        let r = Math.floor(Math.random()*(255 + 1));
+        let g = Math.floor(Math.random()*(255 + 1));
+        let b = Math.floor(Math.random()*(255 + 1));
+
+        this.color = 'rgb(' + r + ', ' + g + ', ' + b + ')';
+    }
 
     public drawSquare(): void {
         let x: number = this.position.x.valueOf();
@@ -50,10 +57,9 @@ export class Square {
     }
 
     public isInside(mousePosition: Position): boolean {
-        let topLeft = this.getUpperLeftCorner();
-        let bottomRight = this.getLowerRightCorner();
-
-        return mousePosition.x >= topLeft.x && mousePosition.x <= bottomRight.x &&
-            mousePosition.y >= topLeft.y && mousePosition.y <= bottomRight.y;
+        return !Position.isLeft(this.getLowerRightCorner(), this.getLowerLeftCorner(), mousePosition) &&
+            !Position.isLeft(this.getLowerLeftCorner(), this.getUpperLeftCorner(), mousePosition) &&
+            !Position.isLeft(this.getUpperLeftCorner(), this.getUpperRightCorner(), mousePosition) &&
+            !Position.isLeft(this.getUpperRightCorner(), this.getLowerRightCorner(), mousePosition);
     }
 }
