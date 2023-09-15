@@ -46,7 +46,7 @@ window.onload = function () {
             let square: Square = new Square(point, size, color, idOfSquare, ctx);
 
             squares.push(square);
-            square.square();
+            square.draw();
         }
     }
 
@@ -57,7 +57,7 @@ window.onload = function () {
         for (let square of squares) {
             if (square.isInside(mousePos)) {
                 square.setRandomRgbColor();
-                square.square();
+                square.draw();
             }
         }
     }, false);

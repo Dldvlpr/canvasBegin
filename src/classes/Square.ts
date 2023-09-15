@@ -30,7 +30,7 @@ export class Square {
         this.color = 'rgb(' + r + ', ' + g + ', ' + b + ')';
     }
 
-    public square(): void {
+    public draw(): void {
         let x: number = this.position.x.valueOf();
         let y: number = this.position.y.valueOf();
         let size: number = this.size;

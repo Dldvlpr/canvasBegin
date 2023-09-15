@@ -29,7 +29,7 @@ describe('Square class', () => {
 
     it('should draw the square with correct values', () => {
         const square = new Square(position, size, color, id, mockContext);
-        square.drawSquare();
+        square.draw();
         expect(mockContext.fillStyle).toBe(color);
         expect(mockContext.fillRect).toHaveBeenCalledWith(position.x, position.y, size, size);
     });
