@@ -52,25 +52,62 @@ window.onload = function () {
         }
     }
 
-    let selectedSquare: Square;
+    let selectedSquare: Square = null;
+    let isDragging: boolean = false;
+    let offsetX: number = 0;
+    let offsetY: number = 0;
 
     canvas.addEventListener("mousedown", function (evt) {
         let mousePos = getMousePos(canvas, evt);
 
+        for (let i = squares.length - 1; i >= 0; i--) {
+            if (squares[i].isInside(mousePos)) {
+                selectedSquare = squares[i];
+                isDragging = true;
+
+                offsetX = mousePos.x - selectedSquare.position.x;
+                offsetY = mousePos.y - selectedSquare.position.y;
+
+                squares.splice(i, 1);
+                squares.push(selectedSquare);
+
+                selectedSquare.setColorAfterSelected();
+                break;
+            }
+        }
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
         for (let square of squares) {
-            if (square.isInside(mousePos)) {
-                selectedSquare = square;
-                square.setColorAfterSelected();
+            square.draw();
+        }
+    }, false);
+
+
+
+    canvas.addEventListener("mousemove", function (evt) {
+        if (isDragging && selectedSquare) {
+            let mousePos = getMousePos(canvas, evt);
+
+            selectedSquare.position.x = mousePos.x - offsetX;
+            selectedSquare.position.y = mousePos.y - offsetY;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let square of squares) {
                 square.draw();
             }
         }
     }, false);
 
     canvas.addEventListener("mouseup", function (evt){
-        selectedSquare.setRandomRgbColor();
-        selectedSquare.draw();
+        if (isDragging) {
+            isDragging = false;
 
-        selectedSquare = null;
+            if (selectedSquare !== null) {
+                selectedSquare.setRandomRgbColor();
+                selectedSquare.draw();
+                selectedSquare = null;
+            }
+        }
     }, false)
 };
 
