@@ -5,6 +5,7 @@ export class Square {
     public color: string;
     public id: number;
     public ctx: CanvasRenderingContext2D;
+    public center: number;
 
     constructor(position: Position, size: number, color: string, id:number, ctx: CanvasRenderingContext2D) {
         this.position = position;
@@ -12,6 +13,7 @@ export class Square {
         this.color = color;
         this.id = id;
         this.ctx = ctx;
+        this.center = size/2;
     }
 
     public getPoint(): Position {
@@ -22,12 +24,20 @@ export class Square {
         return this.id;
     }
 
+    public getCenter(): number {
+        return this.center;
+    }
+
     public setRandomRgbColor(): void {
         let r = Math.floor(Math.random()*(255 + 1));
         let g = Math.floor(Math.random()*(255 + 1));
         let b = Math.floor(Math.random()*(255 + 1));
 
         this.color = 'rgb(' + r + ', ' + g + ', ' + b + ')';
+    }
+
+    public setColorAfterSelected(): void {
+        this.color = "yellow";
     }
 
     public draw(): void {
@@ -54,6 +64,10 @@ export class Square {
 
     public getLowerRightCorner() {
         return new Position( this.position.x + this.size,  this.position.y + this.size)
+    }
+
+    public compareMousePosition(actualMousePosition) {
+
     }
 
     public isInside(mousePosition: Position): boolean {

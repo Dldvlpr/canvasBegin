@@ -7,6 +7,8 @@ window.onload = function () {
 
 
     const canvas = document.getElementById('canvas') as HTMLCanvasElement | null;
+    const canvasMaxX: number = document.getElementById('canvas').clientWidth;
+    const canvasMaxY: number = document.getElementById('canvas').clientHeight;
 
     if (!canvas) {
         const h1 = document.createElement('h1');
@@ -50,16 +52,25 @@ window.onload = function () {
         }
     }
 
-    canvas.addEventListener("click", function (evt) {
+    let selectedSquare: Square;
+
+    canvas.addEventListener("mousedown", function (evt) {
         let mousePos = getMousePos(canvas, evt);
-        console.log(mousePos);
 
         for (let square of squares) {
             if (square.isInside(mousePos)) {
-                square.setRandomRgbColor();
+                selectedSquare = square;
+                square.setColorAfterSelected();
                 square.draw();
             }
         }
     }, false);
+
+    canvas.addEventListener("mouseup", function (evt){
+        selectedSquare.setRandomRgbColor();
+        selectedSquare.draw();
+
+        selectedSquare = null;
+    }, false)
 };
 
