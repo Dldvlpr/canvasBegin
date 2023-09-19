@@ -13,7 +13,6 @@ export class Square {
         this.color = color;
         this.id = id;
         this.ctx = ctx;
-        this.center = size/2;
     }
 
     public getPoint(): Position {
