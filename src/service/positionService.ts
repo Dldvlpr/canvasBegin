@@ -1,5 +1,7 @@
 import {Position} from "../classes/Position";
 import {Square} from "../classes/Square";
+import {StateService} from "./stateService";
+import {RenderService} from "./renderService";
 
 export class PositionService {
     public static getMousePosition(canvas: HTMLCanvasElement, evt: MouseEvent): Position {
@@ -33,5 +35,12 @@ export class PositionService {
             !this.isLeft(square.getLowerLeftCorner(), square.getUpperLeftCorner(), mousePosition) &&
             !this.isLeft(square.getUpperLeftCorner(), square.getUpperRightCorner(), mousePosition) &&
             !this.isLeft(square.getUpperRightCorner(), square.getLowerRightCorner(), mousePosition);
+    }
+
+    public static moveSelected(square: Square, ctx: CanvasRenderingContext2D, mousePos: Position) {
+        let centerOfSquare: Position = PositionService.getCenterPosition(mousePos, square.size);
+        square.setPosition(centerOfSquare);
+        StateService.setRandomRgbColor(square);
+        RenderService.draw(square, ctx)
     }
 }

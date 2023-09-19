@@ -69,10 +69,8 @@ window.onload = function () {
             }
         } else {
             if (selectedSquare) {
-                let centerOfSquare: Position = PositionService.getCenterPosition(mousePos, selectedSquare.size);
-                selectedSquare.setPosition(centerOfSquare);
-                StateService.setRandomRgbColor(selectedSquare);
-                RenderService.draw(selectedSquare, ctx)
+                PositionService.moveSelected(selectedSquare, ctx, mousePos)
+
                 isSquareSelected = false;
                 selectedSquare = null;
             }
