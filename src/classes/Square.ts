@@ -24,8 +24,8 @@ export class Square {
         return this.id;
     }
 
-    public getCenter(): number {
-        return this.center;
+    public setColor(color: string) {
+        this.color = color;
     }
 
     public setRandomRgbColor(): void {
@@ -34,10 +34,6 @@ export class Square {
         let b = Math.floor(Math.random()*(255 + 1));
 
         this.color = 'rgb(' + r + ', ' + g + ', ' + b + ')';
-    }
-
-    public setColorAfterSelected(): void {
-        this.color = "yellow";
     }
 
     public draw(): void {
@@ -66,8 +62,8 @@ export class Square {
         return new Position( this.position.x + this.size,  this.position.y + this.size)
     }
 
-    public compareMousePosition(actualMousePosition) {
-
+    public setPosition(position: Position) {
+        this.position = position;
     }
 
     public isInside(mousePosition: Position): boolean {
