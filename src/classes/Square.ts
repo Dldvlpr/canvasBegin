@@ -46,7 +46,7 @@ export class Square {
     }
 
     public getUpperLeftCorner(): Position {
-        return this.position;
+        return new Position(this.position.x, this.position.y);
     }
 
     public getUpperRightCorner(): Position{
