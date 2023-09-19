@@ -1,5 +1,8 @@
 import {Position} from "./classes/Position";
 import {Square} from "./classes/Square";
+import {StateService} from "./service/stateService";
+import {RenderService} from "./service/renderService";
+import {PositionService} from "./service/positionService";
 
 
 window.onload = function () {
@@ -7,79 +10,69 @@ window.onload = function () {
     let selectedSquare: Square | null = null;
     let isSquareSelected: boolean = false;
 
-    const canvas = document.getElementById('canvas') as HTMLCanvasElement | null;
-    const canvasMaxX: number = document.getElementById('canvas').clientWidth;
-    const canvasMaxY: number = document.getElementById('canvas').clientHeight;
+    const canvas: HTMLCanvasElement = document.getElementById('canvas') as HTMLCanvasElement | null;
 
     if (!canvas) {
-        const h1 = document.createElement('h1');
-        const textNode = document.createTextNode("Canvas is null");
+        const h1: HTMLHeadingElement = document.createElement('h1');
+        const textNode: Text = document.createTextNode("Canvas is null");
         h1.appendChild(textNode);
         document.body.appendChild(h1);
         return;
     }
 
-    const ctx = canvas.getContext('2d');
+    const ctx: CanvasRenderingContext2D = canvas.getContext('2d');
 
     if (!ctx) {
-        const h1 = document.createElement('h1');
-        const textNode = document.createTextNode("Canvas context is unavailable");
+        const h1: HTMLHeadingElement = document.createElement('h1');
+        const textNode: Text = document.createTextNode("Canvas context is unavailable");
         h1.appendChild(textNode);
         document.body.appendChild(h1);
         return;
     }
 
+    let idOfSquare: number = 0;
 
-    function getMousePos(canvas: HTMLCanvasElement, evt: MouseEvent): Position {
-        const rect = canvas.getBoundingClientRect();
-        return new Position(evt.clientX - rect.left, evt.clientY - rect.top);
-    }
+    for (let i: number = 0; i < 2; i++) {
+        for (let j: number = 0; j < 2; j++) {
+            let size: number = 50;
 
-    let idOfSquare = 0;
-
-    for (let i = 0; i < 2; i++) {
-        for (let j = 0; j < 2; j++) {
-            let size = 50;
-
-            let x = i * size;
-            let y = j * size;
+            let x: number = i * size;
+            let y: number = j * size;
             let color: string = (i + j) % 2 === 0 ? "black" : "red";
 
             let point: Position = new Position(x, y);
-            let square: Square = new Square(point, size, color, idOfSquare, ctx);
+            let square: Square = new Square(point, size, color, idOfSquare);
 
             squares.push(square);
-            square.draw();
+            RenderService.draw(square, ctx)
 
             idOfSquare++;
         }
     }
 
     canvas.addEventListener("click", function (evt) {
-        let mousePos = getMousePos(canvas, evt);
+        let mousePos: Position = PositionService.getMousePosition(canvas, evt);
 
         if (!isSquareSelected) {
-            for (let i = squares.length - 1; i >= 0; i--) {
-                if (squares[i].isInside(mousePos)) {
+            for (let i: number = squares.length - 1; i >= 0; i--) {
+                if (PositionService.isInside(squares[i], mousePos)) {
                     selectedSquare = squares[i];
 
                     squares.splice(i, 1);
                     squares.push(selectedSquare);
 
-                    selectedSquare.setColor('yellow');
+                    StateService.changeColorOnClick(selectedSquare, "yellow")
+
                     isSquareSelected = true;
                     break;
                 }
             }
         } else {
             if (selectedSquare) {
-                let { x, y } = mousePos;
-                let centerX = x - (selectedSquare.size/2);
-                let centerY = y - (selectedSquare.size/2);
-                let centerOfSquare: Position = new Position(centerX, centerY);
+                let centerOfSquare: Position = PositionService.getCenterPosition(mousePos, selectedSquare.size);
                 selectedSquare.setPosition(centerOfSquare);
-                selectedSquare.setRandomRgbColor()
-                selectedSquare.draw();
+                StateService.setRandomRgbColor(selectedSquare);
+                RenderService.draw(selectedSquare, ctx)
                 isSquareSelected = false;
                 selectedSquare = null;
             }
@@ -87,7 +80,7 @@ window.onload = function () {
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         for (let square of squares) {
-            square.draw();
+            RenderService.draw(square, ctx)
         }
     });
 };
