@@ -8,7 +8,6 @@ import {PositionService} from "./service/positionService";
 window.onload = function () {
     let squares: Square[] = [];
     let selectedSquare: Square | null = null;
-    let isSquareSelected: boolean = false;
 
     const canvas: HTMLCanvasElement = document.getElementById('canvas') as HTMLCanvasElement | null;
 
@@ -53,33 +52,21 @@ window.onload = function () {
     canvas.addEventListener("click", function (evt) {
         let mousePos: Position = PositionService.getMousePosition(canvas, evt);
 
-        if (!isSquareSelected) {
-            for (let i: number = squares.length - 1; i >= 0; i--) {
-                if (PositionService.isInside(squares[i], mousePos)) {
-                    selectedSquare = squares[i];
-
-                    squares.splice(i, 1);
-                    squares.push(selectedSquare);
-
-                    StateService.changeColorOnClick(selectedSquare, "yellow")
-
-                    isSquareSelected = true;
-                    break;
-                }
+        if (!selectedSquare) {
+            selectedSquare = StateService.isSelected(squares, mousePos);
+            if (selectedSquare) {
+                StateService.changeColorOnClick(selectedSquare, "yellow");
             }
         } else {
-            if (selectedSquare) {
-                PositionService.moveSelected(selectedSquare, ctx, mousePos)
-
-                isSquareSelected = false;
-                selectedSquare = null;
-            }
+            PositionService.moveSelected(selectedSquare, ctx, mousePos);
+            selectedSquare = null;
         }
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         for (let square of squares) {
-            RenderService.draw(square, ctx)
+            RenderService.draw(square, ctx);
         }
     });
+
 };
 
