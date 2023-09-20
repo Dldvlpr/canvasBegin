@@ -56,7 +56,8 @@ window.onload = function () {
     canvas.addEventListener("click", function (evt) {
         let mousePos: Position = Mouse.getMousePosition(canvas, evt)
         if (!selectedSquare) {
-            selectedSquare = Selected.isSelected(squares, mousePos);
+            canvasModel.setSelectedSquare(mousePos);
+            selectedSquare = canvasModel.selectedSquare;
             if (selectedSquare) {
                 SquareApplication.changeSquareColor(selectedSquare, "yellow");
             }
