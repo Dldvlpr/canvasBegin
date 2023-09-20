@@ -1,13 +1,16 @@
-import {Position} from "./classes/Position";
-import {Square} from "./classes/Square";
-import {StateService} from "./service/stateService";
-import {RenderService} from "./service/renderService";
-import {PositionService} from "./service/positionService";
+import { Square } from "./Domain/Entity/Square";
+import { Position } from "./Domain/Entity/Position";
+import { Canvas } from "./Domain/Entity/Canvas";
+import { Render } from "./Infrastructure/Render";
+import { Selected } from "./Infrastructure/Selected";
+import { SquareApplication } from "./Application/SquareApplication";
+import {Mouse} from "./Infrastructure/Mouse";
 
 
 window.onload = function () {
     let squares: Square[] = [];
     let selectedSquare: Square | null = null;
+    let canvasModel = new Canvas()
 
     const canvas: HTMLCanvasElement = document.getElementById('canvas') as HTMLCanvasElement | null;
 
@@ -43,28 +46,30 @@ window.onload = function () {
             let square: Square = new Square(point, size, color, idOfSquare);
 
             squares.push(square);
-            RenderService.draw(square, ctx)
+            Render.draw(square, ctx);
 
             idOfSquare++;
         }
+        canvasModel.setSquares(squares);
     }
 
     canvas.addEventListener("click", function (evt) {
-        let mousePos: Position = PositionService.getMousePosition(canvas, evt);
-
+        let mousePos: Position = Mouse.getMousePosition(canvas, evt)
         if (!selectedSquare) {
-            selectedSquare = StateService.isSelected(squares, mousePos);
+            selectedSquare = Selected.isSelected(squares, mousePos);
             if (selectedSquare) {
-                StateService.changeColorOnClick(selectedSquare, "yellow");
+                SquareApplication.changeSquareColor(selectedSquare, "yellow");
             }
         } else {
-            PositionService.moveSelected(selectedSquare, ctx, mousePos);
+            let centerOfSquare: Position = selectedSquare.getCenterPosition(mousePos, selectedSquare.size);
+            SquareApplication.moveSquareToPosition(selectedSquare, centerOfSquare)
+            SquareApplication.setRandomColorForSquare(selectedSquare);
             selectedSquare = null;
         }
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         for (let square of squares) {
-            RenderService.draw(square, ctx);
+            Render.draw(square, ctx);
         }
     });
 

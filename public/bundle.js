@@ -4,7 +4,7 @@
 
 /***/ "./src/classes/Position.ts":
 /*!*********************************!*\
-  !*** ./src/classes/Position.ts ***!
+  !*** ./src/Domain/Position.ts ***!
   \*********************************/
 /***/ ((__unused_webpack_module, exports) => {
 
@@ -46,7 +46,7 @@ exports.Position = Position;
 
 /***/ "./src/classes/Square.ts":
 /*!*******************************!*\
-  !*** ./src/classes/Square.ts ***!
+  !*** ./src/Domain/Square.ts ***!
   \*******************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -146,12 +146,12 @@ var __webpack_exports__ = {};
 (() => {
 var exports = __webpack_exports__;
 /*!***********************!*\
-  !*** ./src/canvas.ts ***!
+  !*** ./src/Canvas.ts ***!
   \***********************/
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const Position_1 = __webpack_require__(/*! ./classes/Position */ "./src/classes/Position.ts");
-const Square_1 = __webpack_require__(/*! ./classes/Square */ "./src/classes/Square.ts");
+const Position_1 = __webpack_require__(/*! ./Domain/Position */ "./src/classes/Position.ts");
+const Square_1 = __webpack_require__(/*! ./Domain/Square */ "./src/classes/Square.ts");
 window.onload = function () {
     let squares = [];
     const canvas = document.getElementById('canvas');

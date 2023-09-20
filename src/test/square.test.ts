@@ -1,7 +1,6 @@
-import {Square} from "../classes/Square";
-import { Position } from "../classes/Position";
-import {RenderService} from "../service/renderService";
-import {PositionService} from "../service/positionService";
+import {Square} from "../Domain/Entity/Square";
+import { Position } from "../Domain/Entity/Position";
+import {Render} from "../Infrastructure/Render";
 
 describe('Square class', () => {
 
@@ -31,7 +30,7 @@ describe('Square class', () => {
 
     it('should draw the square with correct values', () => {
         const square = new Square(position, size, color, id);
-        RenderService.draw(square, mockContext);
+        Render.draw(square, mockContext);
         expect(mockContext.fillStyle).toBe(color);
         expect(mockContext.fillRect).toHaveBeenCalledWith(position.x, position.y, size, size);
     });
@@ -63,14 +62,14 @@ describe('Square class', () => {
     it('Should be inside', () => {
         const square = new Square(position, size, color, id);
         const actualPosition = new Position(25, 30)
-        const isInside: boolean = PositionService.isInside(square, actualPosition);
+        const isInside = square.isInside(actualPosition);
         expect(isInside).toBeTruthy();
     });
 
     it('Should not be inside', () => {
         const square = new Square(position, size, color, id);
         const actualPosition = new Position(70, 87)
-        const isInside: boolean = PositionService.isInside(square, actualPosition);
+        const isInside = square.isInside(actualPosition);
         expect(isInside).toBeFalsy();
     });
 });

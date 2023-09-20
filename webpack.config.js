@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
     mode: 'development',
-    entry: './src/canvas.ts',
+    entry: './src/Canvas.ts',
     devtool: 'inline-source-map',
     module: {
         rules: [
