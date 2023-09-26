@@ -2,10 +2,9 @@ import { Square } from "./Domain/Entity/Square";
 import { Position } from "./Domain/Entity/Position";
 import { Canvas } from "./Domain/Entity/Canvas";
 import { Render } from "./Infrastructure/Render";
-import { Selected } from "./Infrastructure/Selected";
 import { SquareApplication } from "./Application/SquareApplication";
 import {Mouse} from "./Infrastructure/Mouse";
-
+import {ColorUtil} from "./Infrastructure/ColorUtil";
 
 window.onload = function () {
     let squares: Square[] = [];

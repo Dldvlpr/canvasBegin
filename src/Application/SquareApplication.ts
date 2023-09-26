@@ -1,9 +1,10 @@
 import { Square } from "../Domain/Entity/Square";
 import { Position } from "../Domain/Entity/Position";
+import {ColorUtil} from "../Infrastructure/ColorUtil";
 
 export class SquareApplication {
     public static changeSquareColor(square: Square, color: string): void {
-        square.changeColor(color);
+        square.setColor(color);
     }
 
     public static moveSquareToPosition(square: Square, position: Position): void {
@@ -11,7 +12,7 @@ export class SquareApplication {
     }
 
     public static setRandomColorForSquare(square: Square): void {
-        square.setRandomRgbColor();
+        square.setColor(ColorUtil.randomiseRgbColor());
     }
 
     public static isInside(square: Square ,mousePosition: Position): void {

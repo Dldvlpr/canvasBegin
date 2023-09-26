@@ -5,7 +5,7 @@ export class Square {
     public color: string;
     public id: number;
 
-    constructor(position: Position, size: number, color: string, id:number) {
+    constructor(position: Position, size: number, color: string, id: number) {
         this.position = position;
         this.size = size;
         this.color = color;
@@ -13,7 +13,7 @@ export class Square {
     }
 
     public getPoint(): Position {
-        return this.position;
+        return new Position(this.position.x, this.position.y);
     }
 
     public getId(): number {
@@ -42,17 +42,6 @@ export class Square {
 
     public setPosition(position: Position): void {
         this.position = new Position(position.getx(), position.gety());
-    }
-
-    public changeColor(color: string): void {
-        this.color = color;
-    }
-
-    public setRandomRgbColor(): void {
-        let r: number = Math.floor(Math.random()*(255 + 1));
-        let g: number = Math.floor(Math.random()*(255 + 1));
-        let b: number = Math.floor(Math.random()*(255 + 1));
-        this.color = 'rgb(' + r + ', ' + g + ', ' + b + ')';
     }
 
     public move(centerOfSquare: Position): void {
