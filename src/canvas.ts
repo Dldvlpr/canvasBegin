@@ -55,10 +55,13 @@ window.onload = function () {
 
     canvas.addEventListener("click", function (evt) {
         let mousePos: Position = Mouse.getMousePosition(canvas, evt);
+        let select = canvasModel.setSelectedSquare(mousePos);
+
         if (!selectedSquare) {
-            canvasModel.setSelectedSquare(mousePos);
             selectedSquare = canvasModel.selectedSquare;
+
             if (selectedSquare) {
+
                 const newColor = new Color(255, 255, 0);
                 SquareApplication.changeSquareColor(selectedSquare, newColor);
             }
@@ -79,4 +82,3 @@ window.onload = function () {
 
     });
 }
-

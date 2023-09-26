@@ -13,6 +13,7 @@ export class Color {
         return new Color(r, g, b)
     }
 
+
     public static randomRgbColor(): Color {
         let r: number = Math.floor(Math.random() * (255 + 1));
         let g: number = Math.floor(Math.random() * (255 + 1));
