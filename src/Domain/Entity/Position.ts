@@ -7,19 +7,19 @@ export class Position {
         this.y = y;
     }
 
-    public getx(): number {
+    public getX(): number {
        return this.x;
     }
 
-    public gety(): number {
+    public getY(): number {
         return this.y;
     }
 
-    public setx(valueOfX: number): void {
+    public setX(valueOfX: number): void {
         this.x = valueOfX;
     }
 
-    public sety(valueOfY: number): void {
+    public setY(valueOfY: number): void {
         this.y = valueOfY;
     }
 }

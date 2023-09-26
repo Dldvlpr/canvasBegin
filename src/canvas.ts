@@ -72,6 +72,4 @@ window.onload = function () {
             Render.draw(square, ctx);
         }
     });
-
 };
-

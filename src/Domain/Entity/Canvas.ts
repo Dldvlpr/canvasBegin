@@ -2,8 +2,8 @@ import {Square} from "./Square";
 import {Position} from "./Position";
 
 export class Canvas {
-    public squares;
-    public selectedSquare;
+    public squares: Square[];
+    public selectedSquare: Square;
 
     public setSquares(squaresArray: Square[]) {
         this.squares = squaresArray;

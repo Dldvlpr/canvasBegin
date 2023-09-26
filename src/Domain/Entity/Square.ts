@@ -41,11 +41,11 @@ export class Square {
     }
 
     public setPosition(position: Position): void {
-        this.position = new Position(position.getx(), position.gety());
+        this.position = new Position(position.getX(), position.getY());
     }
 
     public move(centerOfSquare: Position): void {
-        this.position = new Position(centerOfSquare.getx(), centerOfSquare.gety());
+        this.position = new Position(centerOfSquare.getX(), centerOfSquare.getY());
     }
 
     public isLeft(lineFirstPoint: Position, lineSecondPoint: Position, point: Position): boolean {
