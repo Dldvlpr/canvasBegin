@@ -8,18 +8,10 @@ export class Position {
     }
 
     public getX(): number {
-       return this.x;
+        return this.x;
     }
 
     public getY(): number {
         return this.y;
-    }
-
-    public setX(valueOfX: number): void {
-        this.x = valueOfX;
-    }
-
-    public setY(valueOfY: number): void {
-        this.y = valueOfY;
     }
 }

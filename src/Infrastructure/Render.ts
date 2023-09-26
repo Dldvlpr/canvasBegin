@@ -6,7 +6,7 @@ export class Render {
         let y: number = square.position.y.valueOf();
         let size: number = square.size;
 
-        ctx.fillStyle = square.color;
+        ctx.fillStyle = square.color.toString();
 
         return ctx.fillRect(x, y, size, size);
     }

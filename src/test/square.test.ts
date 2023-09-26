@@ -1,13 +1,14 @@
 import {Square} from "../Domain/Entity/Square";
 import { Position } from "../Domain/Entity/Position";
 import {Render} from "../Infrastructure/Render";
+import { Color } from "../Domain/Entity/Color";
 
 describe('Square class', () => {
 
     let mockContext: CanvasRenderingContext2D;
     let position: Position;
     let size: number;
-    let color: string;
+    let color: Color;
     let id: number;
 
     beforeEach(() => {
@@ -18,13 +19,13 @@ describe('Square class', () => {
 
         position = new Position(0, 0);
         size = 50;
-        color = "black";
+        color = new Color(0, 0, 0);
         id = 1;
     });
 
     it('should create a Square instance correctly', () => {
         const square = new Square(position, size, color, id);
-        expect(square.getPoint()).toEqual(position);
+        expect(square.getPosition()).toEqual(position);
         expect(square.getId()).toBe(id);
     });
 

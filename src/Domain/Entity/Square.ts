@@ -1,27 +1,24 @@
 import {Position} from "./Position";
+import {Color} from "./Color";
 export class Square {
     public position: Position;
     public size: number;
-    public color: string;
+    public color: Color;
     public id: number;
 
-    constructor(position: Position, size: number, color: string, id: number) {
+    constructor(position: Position, size: number, color: Color, id: number) {
         this.position = position;
         this.size = size;
-        this.color = color;
+        this.color = color
         this.id = id;
     }
 
-    public getPoint(): Position {
+    public getPosition(): Position {
         return new Position(this.position.x, this.position.y);
     }
 
     public getId(): number {
         return this.id;
-    }
-
-    public setColor(color: string): void {
-        this.color = color;
     }
 
     public getUpperLeftCorner(): Position {
@@ -70,9 +67,9 @@ export class Square {
             !this.isLeft(this.getUpperRightCorner(), this.getLowerRightCorner(), mousePosition);
     }
 
-    public getCenterPosition(mousePos: Position, size: number): Position {
-        const centerX: number = mousePos.x - (size / 2);
-        const centerY: number = mousePos.y - (size / 2);
+    public setCenterPosition(mousePos: Position): Position {
+        const centerX: number = mousePos.x - (this.size / 2);
+        const centerY: number = mousePos.y - (this.size / 2);
         return new Position(centerX, centerY);
     }
 }
