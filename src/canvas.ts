@@ -54,17 +54,20 @@ window.onload = function () {
 
     let action = 'none';
 
-
     canvas.addEventListener("click", function (evt) {
         let mousePos: Position = Mouse.getMousePosition(canvas, evt);
         let newSelectedSquare: Square | null = canvasModel.setSelectedSquare(mousePos);
 
         if (newSelectedSquare) {
-            if (action === 'none' || (selectedSquare && selectedSquare.getId() !== newSelectedSquare.getId())) {
+            if (action === 'none') {
                 selectedSquare = newSelectedSquare;
                 const newColor = new Color(255, 255, 0);
                 SquareApplication.changeSquareColor(selectedSquare, newColor);
                 action = 'selected';
+                return;
+            }
+            if (action === 'selected' && selectedSquare.getId() === newSelectedSquare.getId()) {
+                action = 'none';
                 return;
             }
         }
@@ -82,7 +85,4 @@ window.onload = function () {
             Render.draw(square, ctx);
         }
     });
-
-
-
 }
