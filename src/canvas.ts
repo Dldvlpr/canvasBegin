@@ -64,12 +64,16 @@ window.onload = function () {
                 const newColor = new Color(255, 255, 0);
                 SquareApplication.changeSquareColor(selectedSquare, newColor);
                 action = 'selected';
-                return;
-            }
-            if (action === 'selected' && selectedSquare.getId() === newSelectedSquare.getId()) {
+            } else if (action === 'selected' && selectedSquare.getId() === newSelectedSquare.getId()) {
                 action = 'none';
-                return;
+                const originalColor = new Color(0, 0, 0);
+                SquareApplication.changeSquareColor(selectedSquare, originalColor);
             }
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let square of squares) {
+                Render.draw(square, ctx);
+            }
+            return;
         }
 
         if (action === 'selected' && selectedSquare) {
