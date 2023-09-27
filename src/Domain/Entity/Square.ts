@@ -67,9 +67,9 @@ export class Square {
             !this.isLeft(this.getUpperRightCorner(), this.getLowerRightCorner(), mousePosition);
     }
 
-    public setCenterPosition(mousePos: Position): Position {
+    public setCenterPosition(mousePos: Position): void {
         const centerX: number = mousePos.x - (this.size / 2);
         const centerY: number = mousePos.y - (this.size / 2);
-        return new Position(centerX, centerY);
+        this.position = new Position(centerX, centerY);
     }
 }

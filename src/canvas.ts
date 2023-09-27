@@ -53,37 +53,24 @@ window.onload = function () {
 
     let action = 'none';
 
+    let select = (mousePos) => {
+        for (const square of squares) {
+            if (square.isInside(mousePos)) {
+                canvasModel.selectedSquare = square;
+            }
+        }
+    }
     canvas.addEventListener("click", function (evt) {
         let mousePos: Position = Mouse.getMousePosition(canvas, evt);
 
-        console.log(canvasModel.findSquare(mousePos, squares))
-        console.log(canvasModel.getSelectedSquare())
+        console.log(mousePos);
 
-        if (canvasModel.getSelectedSquare() !== canvasModel.findSquare(mousePos, squares)) {
-            canvasModel.setSelectedSquare(mousePos)
-            if (action === 'none') {
-                const newColor = new Color(255, 255, 0);
-                SquareApplication.changeSquareColor(canvasModel.getSelectedSquare(), newColor);
-                action = 'selected';
-            }
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let square of squares) {
-                Render.draw(square, ctx);
-            }
-            return;
+        if (canvasModel.selectedSquare) {
+            canvasModel.selectedSquare.setCenterPosition(mousePos);
+            canvasModel.selectedSquare = null;
+        } else {
+            select(mousePos);
         }
-
-        if (action === 'selected' && canvasModel.getSelectedSquare()) {
-            let centerOfSquare: Position = canvasModel.getSelectedSquare().setCenterPosition(mousePos);
-            SquareApplication.moveSquareToPosition(canvasModel.getSelectedSquare(), centerOfSquare);
-            const randomColor = Color.randomRgbColor();
-            SquareApplication.changeSquareColor(canvasModel.getSelectedSquare(), randomColor);
-            action = 'none';
-        }
-
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        for (let square of squares) {
-            Render.draw(square, ctx);
-        }
+        Render.drawAll(canvas, squares);
     });
 }

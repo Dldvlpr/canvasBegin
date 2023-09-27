@@ -1,4 +1,5 @@
 import {Square} from "../Domain/Entity/Square";
+import {Canvas} from "../Domain/Entity/Canvas";
 
 export class Render {
     public static draw(square: Square, ctx: CanvasRenderingContext2D): void {
@@ -9,5 +10,12 @@ export class Render {
         ctx.fillStyle = square.color.toString();
 
         return ctx.fillRect(x, y, size, size);
+    }
+
+    public static drawAll(canvas: HTMLCanvasElement, squares: Square[]) {
+        canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+        for (let square of squares) {
+            Render.draw(square, canvas.getContext('2d'));
+        }
     }
 }
