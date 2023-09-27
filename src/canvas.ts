@@ -5,7 +5,6 @@ import {Color} from "./Domain/Entity/Color";
 import {Render} from "./Infrastructure/Render";
 import {SquareApplication} from "./Application/SquareApplication";
 import {Mouse} from "./Infrastructure/Mouse";
-import {inspect} from "util";
 
 window.onload = function () {
     let squares: Square[] = [];
@@ -55,13 +54,14 @@ window.onload = function () {
 
     canvas.addEventListener("click", function (evt) {
         let mousePos: Position = Mouse.getMousePosition(canvas, evt);
-        let select = canvasModel.setSelectedSquare(mousePos);
+        canvasModel.setSelectedSquare(mousePos);
 
         if (!selectedSquare) {
             selectedSquare = canvasModel.selectedSquare;
 
             if (selectedSquare) {
 
+                console.log(selectedSquare)
                 const newColor = new Color(255, 255, 0);
                 SquareApplication.changeSquareColor(selectedSquare, newColor);
             }
@@ -79,6 +79,5 @@ window.onload = function () {
         for (let square of squares) {
             Render.draw(square, ctx);
         }
-
     });
 }

@@ -1,24 +1,21 @@
 const path = require('path');
 
 module.exports = {
-    mode: 'development',
-    entry: './src/Canvas.ts',
-    devtool: 'inline-source-map',
+    entry: './src/canvas.ts',
+    output: {
+        filename: 'canvas.js',
+        path: path.resolve(__dirname, 'public'),
+    },
     module: {
         rules: [
             {
-                test: /\.tsx?$/,
+                test: /\.ts$/,
                 use: 'ts-loader',
-                exclude: /node_modules/
-            }
-        ]
+                exclude: /node_modules/,
+            },
+        ],
     },
     resolve: {
-        extensions: ['.tsx', '.ts', '.js']
-    },
-    output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'public'),
-        publicPath: '/public/'
+        extensions: ['.ts', '.js'],
     },
 };
