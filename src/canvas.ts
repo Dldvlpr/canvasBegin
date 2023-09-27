@@ -52,27 +52,29 @@ window.onload = function () {
         canvasModel.setSquares(squares);
     }
 
+    let action = 'none';
+
+
     canvas.addEventListener("click", function (evt) {
         let mousePos: Position = Mouse.getMousePosition(canvas, evt);
-        canvasModel.setSelectedSquare(mousePos);
+        let newSelectedSquare: Square | null = canvasModel.setSelectedSquare(mousePos);
 
-        if (!selectedSquare) {
-            selectedSquare = canvasModel.selectedSquare;
-
-            if (selectedSquare) {
-
-                console.log(selectedSquare)
+        if (newSelectedSquare) {
+            if (action === 'none' || (selectedSquare && selectedSquare.getId() !== newSelectedSquare.getId())) {
+                selectedSquare = newSelectedSquare;
                 const newColor = new Color(255, 255, 0);
                 SquareApplication.changeSquareColor(selectedSquare, newColor);
+                action = 'selected';
+                return;
             }
-        } else {
+        }
+
+        if (action === 'selected' && selectedSquare) {
             let centerOfSquare: Position = selectedSquare.setCenterPosition(mousePos);
             SquareApplication.moveSquareToPosition(selectedSquare, centerOfSquare);
-
             const randomColor = Color.randomRgbColor();
             SquareApplication.changeSquareColor(selectedSquare, randomColor);
-
-            selectedSquare = null;
+            action = 'none';
         }
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -80,4 +82,7 @@ window.onload = function () {
             Render.draw(square, ctx);
         }
     });
+
+
+
 }

@@ -3,7 +3,7 @@ import {Position} from "./Position";
 
 export class Canvas {
     public squares: Square[];
-    public selectedSquare: Square;
+    public selectedSquare: Square | null;
 
     public setSquares(squaresArray: Square[]) {
         this.squares = squaresArray;
@@ -20,4 +20,5 @@ export class Canvas {
         }
         return null;
     }
+
 }

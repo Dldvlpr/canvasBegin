@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "build": "webpack --mode production",
+    "build:webpack": "webpack --mode production",
     "build:ts": "tsc -p tsconfig.json",
-    "start": "tsc && node ./build/index.js"
+    "start": "tsc && node ./build/index.js",
+    "start:server": "npm run build:webpack && npm run build:ts && npm run start"
   },
   "keywords": [],
   "author": "",
