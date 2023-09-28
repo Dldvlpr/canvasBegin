@@ -55,6 +55,7 @@ window.onload = function () {
         for (const square of squares) {
             if (square.isInside(mousePos)) {
                 canvasModel.selectedSquare = square;
+                canvasModel.selectedSquare.color.setYellowColor();
             }
         }
     }
@@ -65,6 +66,7 @@ window.onload = function () {
 
         if (canvasModel.selectedSquare) {
             canvasModel.selectedSquare.setCenterPosition(mousePos);
+            canvasModel.selectedSquare.color.setRandomRgbColor();
             canvasModel.selectedSquare = null;
         } else {
             select(mousePos);

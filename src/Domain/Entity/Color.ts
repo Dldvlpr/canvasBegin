@@ -9,16 +9,17 @@ export class Color {
         this.b = b;
     }
 
-    updateColor(r: number, g: number, b: number): Color {
-        return new Color(r, g, b)
+    public setYellowColor(): void {
+        this.r = 255;
+        this.g = 255;
+        this.b = 0;
     }
 
 
-    public static randomRgbColor(): Color {
-        let r: number = Math.floor(Math.random() * (255 + 1));
-        let g: number = Math.floor(Math.random() * (255 + 1));
-        let b: number = Math.floor(Math.random() * (255 + 1));
-        return new Color(r, g, b);
+    public setRandomRgbColor(): void {
+        this.r = Math.floor(Math.random() * (255 + 1));
+        this.g = Math.floor(Math.random() * (255 + 1));
+        this.b = Math.floor(Math.random() * (255 + 1));
     }
 
     public toString(): string {
