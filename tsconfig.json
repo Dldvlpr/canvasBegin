@@ -9,7 +9,7 @@
     "sourceMap": true,
     "forceConsistentCasingInFileNames": true,
     "outDir": "./build",
-    "declaration": true
+    "declaration": true,
   },
   "include": [
     "src/**/*.ts"

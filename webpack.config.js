@@ -1,6 +1,7 @@
 const path = require('path');
 
 module.exports = {
+    mode: 'development',
     entry: './src/canvas.ts',
     output: {
         filename: 'canvas.js',
@@ -19,6 +20,8 @@ module.exports = {
         extensions: ['.ts', '.js'],
     },
     devServer: {
-        inline: false,
-    }
+        static: path.join(__dirname, 'public'),
+        hot: true,
+        port: 8080,
+    },
 };

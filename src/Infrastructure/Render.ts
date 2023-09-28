@@ -10,4 +10,12 @@ export class Render {
 
         return ctx.fillRect(x, y, size, size);
     }
+
+    public static drawAll(canvas: HTMLCanvasElement, squares: Square[]) {
+        canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+        for (let square of squares) {
+            Render.draw(square, canvas.getContext('2d'));
+        }
+    }
+
 }
