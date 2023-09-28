@@ -3,7 +3,6 @@ import {Position} from "./Domain/Entity/Position";
 import {Canvas} from "./Domain/Entity/Canvas";
 import {Color} from "./Domain/Entity/Color";
 import {Render} from "./Infrastructure/Render";
-import {SquareApplication} from "./Application/SquareApplication";
 import {Mouse} from "./Infrastructure/Mouse";
 
 window.onload = function () {
@@ -55,7 +54,7 @@ window.onload = function () {
         for (const square of squares) {
             if (square.isInside(mousePos)) {
                 canvasModel.selectedSquare = square;
-                canvasModel.selectedSquare.color.setYellowColor();
+                canvasModel.selectedSquare.color = new Color(255, 255, 0);
             }
         }
     }
@@ -66,7 +65,7 @@ window.onload = function () {
 
         if (canvasModel.selectedSquare) {
             canvasModel.selectedSquare.setCenterPosition(mousePos);
-            canvasModel.selectedSquare.color.setRandomRgbColor();
+            canvasModel.selectedSquare.color = Color.createRandomColor();
             canvasModel.selectedSquare = null;
         } else {
             select(mousePos);

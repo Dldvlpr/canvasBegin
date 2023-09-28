@@ -37,10 +37,6 @@ export class Square {
         return new Position( this.position.x + this.size,  this.position.y + this.size)
     }
 
-    public setPosition(position: Position): void {
-        this.position = new Position(position.getX(), position.getY());
-    }
-
     public move(centerOfSquare: Position): void {
         this.position = new Position(centerOfSquare.getX(), centerOfSquare.getY());
     }

@@ -9,18 +9,19 @@ export class Color {
         this.b = b;
     }
 
-    public setYellowColor(): void {
-        this.r = 255;
-        this.g = 255;
-        this.b = 0;
+    public static randomRgbColor(): [number, number, number] {
+        return [
+            Math.floor(Math.random() * 256),
+            Math.floor(Math.random() * 256),
+            Math.floor(Math.random() * 256)
+        ];
     }
 
-
-    public setRandomRgbColor(): void {
-        this.r = Math.floor(Math.random() * (255 + 1));
-        this.g = Math.floor(Math.random() * (255 + 1));
-        this.b = Math.floor(Math.random() * (255 + 1));
+    public static createRandomColor(): Color {
+        const [r, g, b] = Color.randomRgbColor();
+        return new Color(r, g, b);
     }
+
 
     public toString(): string {
         return `rgb(${this.r}, ${this.g}, ${this.b})`;
