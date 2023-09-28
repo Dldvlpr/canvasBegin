@@ -24,6 +24,7 @@ export class Canvas {
         }
         return null;
     }
+
     public findSquare(mousePos: Position, squares: Square[]): Square {
         return squares.find(square => square.getId());
     }

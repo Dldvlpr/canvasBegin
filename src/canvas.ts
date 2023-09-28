@@ -51,12 +51,24 @@ window.onload = function () {
         canvasModel.setSquares(squares);
     }
 
-    let action = 'none';
+    let select = (mousePos: Position) => {
+        for (const square of squares) {
+            if (square.isInside(mousePos)) {
+                canvasModel.selectedSquare = square;
+            }
+        }
+    }
+
 
     canvas.addEventListener("click", function (evt) {
         let mousePos: Position = Mouse.getMousePosition(canvas, evt);
 
-
+        if (canvasModel.selectedSquare) {
+            canvasModel.selectedSquare.setCenterPosition(mousePos);
+            canvasModel.selectedSquare = null;
+        } else {
+            select(mousePos);
+        }
         Render.drawAll(canvas, squares);
     });
 }
