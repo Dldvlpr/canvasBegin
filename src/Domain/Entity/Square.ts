@@ -38,7 +38,7 @@ export class Square {
     }
 
     public move(centerOfSquare: Position): void {
-        this.position = new Position(centerOfSquare.getX(), centerOfSquare.getY());
+        this.position = new Position(centerOfSquare.x, centerOfSquare.x);
     }
 
     public isLeft(lineFirstPoint: Position, lineSecondPoint: Position, point: Position): boolean {
