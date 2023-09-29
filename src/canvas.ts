@@ -50,16 +50,6 @@ window.onload = function () {
         canvasModel.setSquares(squares);
     }
 
-    let select = (mousePos: Position) => {
-        for (const square of squares) {
-            if (square.isInside(mousePos)) {
-                canvasModel.selectedSquare = square;
-                canvasModel.selectedSquare.color = new Color(255, 255, 0);
-            }
-        }
-    }
-
-
     canvas.addEventListener("click", function (evt) {
         let mousePos: Position = Mouse.getMousePosition(canvas, evt);
 
@@ -68,7 +58,7 @@ window.onload = function () {
             canvasModel.selectedSquare.color = Color.createRandomColor();
             canvasModel.selectedSquare = null;
         } else {
-            select(mousePos);
+            canvasModel.updateSelectedSquare(mousePos);
         }
         Render.drawAll(canvas, squares);
     });

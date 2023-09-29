@@ -13,7 +13,12 @@ export class Canvas {
         return this.selectedSquare;
     }
 
-    public setSelectedSquare(mousePos: Position): Square | null {
+    /**
+     * Update selected square from mouse position.
+     * Put selected square in front of canvas (Square[])
+     * @param mousePos
+     */
+    public updateSelectedSquare(mousePos: Position): Square | null {
         for (let i: number = this.squares.length - 1; i >= 0; i--) {
             if (this.squares[i].isInside(mousePos)) {
                 this.selectedSquare = this.squares[i];
