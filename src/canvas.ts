@@ -1,7 +1,7 @@
 import {Square} from "./Domain/Entity/Square";
 import {Position} from "./Domain/Entity/Position";
 import {Canvas} from "./Domain/Entity/Canvas";
-import {Color} from "./Domain/Entity/Color";
+import {Color} from "./Domain/ValueObject/Color";
 import {Render} from "./Infrastructure/Render";
 import {Mouse} from "./Infrastructure/Mouse";
 

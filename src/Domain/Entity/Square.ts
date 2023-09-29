@@ -1,5 +1,5 @@
 import {Position} from "./Position";
-import {Color} from "./Color";
+import {Color} from "../ValueObject/Color";
 export class Square {
     private position: Position;
     private readonly id: number;

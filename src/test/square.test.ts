@@ -1,7 +1,7 @@
 import {Square} from "../Domain/Entity/Square";
 import { Position } from "../Domain/Entity/Position";
 import {Render} from "../Infrastructure/Render";
-import { Color } from "../Domain/Entity/Color";
+import { Color } from "../Domain/ValueObject/Color";
 
 describe('Square class', () => {
 

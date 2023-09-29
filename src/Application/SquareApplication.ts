@@ -1,6 +1,6 @@
 import { Square } from "../Domain/Entity/Square";
 import { Position } from "../Domain/Entity/Position";
-import {Color} from "../Domain/Entity/Color";
+import {Color} from "../Domain/ValueObject/Color";
 
 export class SquareApplication {
     public static changeSquareColor(square: Square, newColor: Color): void {
