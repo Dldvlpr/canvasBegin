@@ -1,10 +1,10 @@
 import {Position} from "./Position";
 import {Color} from "./Color";
 export class Square {
-    public position: Position;
+    private position: Position;
+    private readonly id: number;
     public size: number;
     public color: Color;
-    public id: number;
 
     constructor(position: Position, size: number, color: Color, id: number) {
         this.position = position;
